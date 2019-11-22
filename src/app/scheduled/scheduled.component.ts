@@ -189,17 +189,6 @@ export class ScheduledComponent implements OnInit {
 
   toggleAccordian(event, index) {
 
-    // let count = this.lists.filter(obj => {
-    //   return obj.newList == this.tasks[index].parent
-    // })
-    // // console.log(count[0].todos)
-    // let parent = count[0].todos.filter(obj => {
-    //   return obj.newTodo == this.tasks[index].newTodo
-    // })
-    // this.parent = parent
-    // console.log(this.parent)
-
-
     if (this.tasks[index].notes.note) {
       $('#note' + index).val(this.tasks[index].notes.note);
       console.log(index)
