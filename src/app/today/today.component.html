@@ -4,7 +4,8 @@
       <div class="grid grid-pad todo">
 
         <ul>
-          <li *ngFor="let todo of tasks; let i=index" cdkDrag>
+          <li *ngFor="let todo of tasks; let i=index" [ngStyle]="{'border-left':getPriority(todo.notes.Priority)}"
+            cdkDrag>
             <button class="accordion" (click)="toggleAccordian($event, i)">
               <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" (ngModelChange)="changed()" />
               <span contenteditable="true" style="height:20px; width: 25%;" (blur)="editTodo($event,i)"

@@ -87,20 +87,20 @@ export class ScheduledComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    for (var i = 0; i <= this.result.length; i++) {
-      if (this.result[i] == 'high') {
-        $('li')[i].style.borderLeft = "solid red"
-      }
-      if (this.result[i] == 'low') {
-        $('li')[i].style.borderLeft = "solid blue"
-      }
-      if (this.result[i] == 'medium') {
-        $('li')[i].style.borderLeft = "solid orange"
-      }
-      if (this.result[i] == 'none') {
-        $('li')[i].style.borderLeft = "none"
-      }
-    }
+    // for (var i = 0; i <= this.result.length; i++) {
+    //   if (this.result[i] == 'high') {
+    //     $('li')[i].style.borderLeft = "solid red"
+    //   }
+    //   if (this.result[i] == 'low') {
+    //     $('li')[i].style.borderLeft = "solid blue"
+    //   }
+    //   if (this.result[i] == 'medium') {
+    //     $('li')[i].style.borderLeft = "solid orange"
+    //   }
+    //   if (this.result[i] == 'none') {
+    //     $('li')[i].style.borderLeft = "none"
+    //   }
+    // }
 
     var lists = this.lists;
     var tasks = this.tasks;
@@ -263,7 +263,18 @@ export class ScheduledComponent implements OnInit {
     this.setodo();
 
   }
-
+  getPriority(priorityname) {
+    switch (priorityname) {
+      case 'high':
+        return 'solid red';
+      case 'low':
+        return 'solid blue';
+      case 'medium':
+        return 'solid orange';
+      case 'none':
+        return 'none';
+    }
+  }
   savePriority(event: any, i) {
     let priority;
     priority = this.tasks[i].notes.Priority = this.Priority;
@@ -278,18 +289,18 @@ export class ScheduledComponent implements OnInit {
     this.lists[count].todos[parent].notes.Priority = this.Priority
     this.storage.set("lists", this.lists)
     this.storage.set("all", this.tasks);
-    if (priority == 'high') {
-      $('li')[i].style.borderLeft = "solid red"
-    }
-    if (priority == 'low') {
-      $('li')[i].style.borderLeft = "solid blue"
-    }
-    if (priority == 'medium') {
-      $('li')[i].style.borderLeft = "solid orange"
-    }
-    if (priority == 'none') {
-      $('li')[i].style.borderLeft = "none"
-    }
+    // if (priority == 'high') {
+    //   $('li')[i].style.borderLeft = "solid red"
+    // }
+    // if (priority == 'low') {
+    //   $('li')[i].style.borderLeft = "solid blue"
+    // }
+    // if (priority == 'medium') {
+    //   $('li')[i].style.borderLeft = "solid orange"
+    // }
+    // if (priority == 'none') {
+    //   $('li')[i].style.borderLeft = "none"
+    // }
     this.setodo();
 
   }
