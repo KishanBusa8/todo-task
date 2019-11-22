@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="grid grid-pad todo">
+
+        <ul>
+          <li *ngFor="let todo of tasks; let i=index" cdkDrag>
+            <button class="accordion" (click)="toggleAccordian($event, i)">
+              <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" (ngModelChange)="changed()" />
+              <span contenteditable="true" style="height:20px; width: 25%;" (blur)="editTodo($event,i)"
+                [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</span> <span
+                style="float: right;">{{todo.notes.date}}</span>
+            </button>
+            <div class="panel" hide="!item.isActive">
+              <form novalidate (ngSubmit)="onSubmit()" #f="ngForm">
+
+                <div class="form-group" style="float: left; width: 50%;">
+                  <label>Notes: </label><br>
+                  <textarea name="note" [(ngModel)]="note" id=note{{i}} cols="30" rows="10"
+                    (keyup)="onKey($event,i)"></textarea>
+                </div>
+                <div class="form-group" style="float: right; width: 50%;">
+                  <label>Due date: </label><br>
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" class=radio{{i}} (change)="savedate($event, i)"
+                      name="mode" value="Today" [(ngModel)]="date">Today
+                  </label>
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" class=radio{{i}} (change)="savedate($event, i)"
+                      [(ngModel)]="date" name="mode" value="Tommorow">Tommorow
+                  </label>
+                  <label class="form-check-inline">
+                    <input type="date" name="bday" (change)="savedate($event, i)" class=radio{{i}} [(ngModel)]="date">
+
+                  </label>
+                </div>
+                <div class="form-group" style="float: right; width: 50%;">
+                  <label>Priority </label><br>
+                  <select name="Priority" class="form-control" id=priority{{i}} (change)="savePriority($event, i)"
+                    [(ngModel)]="Priority">
+                    <option value="none">None</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+                <button style="float: right;" (click)="deleteTodo(i)">Delete</button>
+              </form>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="todos">
+
+        <div>
+          <form (ngSubmit)="addTodo($event)">
+            <input [(ngModel)]="newTodo" (keyup.enter)="newTodo=''" class="textfield" name="newTodo">
+            <button type="submit" [disabled]="newTodo===''">Add Todo</button>
+            <select name="parent" class="form-control" id="parent" (change)="onChange($event.target.value)">
+              <option *ngFor="let parent of parent; let i=index" [value]="i">{{parent.newList}}</option>
+            </select>
+          </form>
+        </div>
+
+        <div [hidden]="newTodo">
+          Type in a new todo...
+        </div>
+
+        <div [hidden]="!newTodo">
+          Typing: {{ newTodo }}
+        </div>
+
+
+
+        <div class="mtop20">
+          <button (click)="deleteSelectedTodos()">Clear Done Tasks</button>
+        </div>
+        <button class="show">Done ({{count}})</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+</div>
