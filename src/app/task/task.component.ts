@@ -5,7 +5,7 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { lists } from '../list'
 import 'rxjs/add/operator/switchMap';
 import * as $ from 'jquery';
-
+import { INgxMyDpOptions, IMyDateModel } from 'ngx-mydatepicker';
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -276,12 +276,25 @@ export class TaskComponent implements OnInit, AfterViewInit {
     this.setodo();
 
   }
-  savedate(event: any, i) {
-    this.lists[this.index].todos[i].notes.date = this.date
+
+
+  onDateChanged(event: IMyDateModel, i): void {
+    console.log(event.jsdate)
+    this.lists[this.index].todos[i].notes.date = event.jsdate
+    this.date = event.jsdate;
     this.storage.set("lists", this.lists)
     this.setalltodo();
     this.setodo()
   }
+  savedate(event: any, i) {
+    console.log(i)
+    this.lists[this.index].todos[i].notes.date = this.date
+    // alert(this.date)
+    this.storage.set("lists", this.lists)
+    this.setalltodo();
+    this.setodo()
+  }
+
   deleteTodo(index) {
     this.count--;
     this.tasks.notes = ''

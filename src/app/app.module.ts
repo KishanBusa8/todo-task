@@ -13,7 +13,9 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import { TaskComponent } from './task/task.component';
 import { NgxClickToEditModule } from 'ngx-click-to-edit';
 import { PopoverModule } from "ngx-popover";
-
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { DpDatePickerModule } from 'ng2-date-picker';
+import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { PopoverModule } from "ngx-popover";
     TaskComponent
   ],
   imports: [
+    NgxMyDatePickerModule.forRoot(),
     BrowserModule,
     StorageServiceModule,
     AppRoutingModule,
@@ -32,6 +35,9 @@ import { PopoverModule } from "ngx-popover";
     HttpModule,
     NgxClickToEditModule.forRoot(),
     PopoverModule,
+    DlDateTimeDateModule,  // <--- Determines the data type of the model
+    DlDateTimePickerModule,
+    DpDatePickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

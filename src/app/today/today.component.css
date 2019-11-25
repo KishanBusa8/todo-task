@@ -19,7 +19,7 @@
     width: 20px;
     height: 20px;
   }
-
+ 
   .todo .checked {
     text-decoration: line-through;
   }
